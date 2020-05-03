@@ -11,7 +11,6 @@ public class SeatingArrangement {
 		while(t-->0) {
 			q = scan.nextInt();
 			System.out.println(solve(q));
-			
 		}
 
 	}
@@ -60,5 +59,6 @@ public class SeatingArrangement {
 		}
 		return ans+12*compartment+" "+str;
 	}
+	
 	
 }
