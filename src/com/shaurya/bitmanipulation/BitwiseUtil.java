@@ -7,6 +7,7 @@ public class BitwiseUtil {
 			bit=(n%2)+bit;
 			n=n/2;
 		}
-		return bit;
+		
+		return bit.isEmpty()?"0":bit;
 	}
 }
