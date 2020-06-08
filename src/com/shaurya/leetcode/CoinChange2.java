@@ -45,7 +45,7 @@ public class CoinChange2 {
 		}
 		
 		//now we try to choose coin i or not choose coint i
-		return countRecusionMemory(coins,i,amount-coins[i],dp)+countRecusionMemory(coins,i+1,amount,dp);//check one note for recursion tree
+		return dp[i][amount]=countRecusionMemory(coins,i,amount-coins[i],dp)+countRecusionMemory(coins,i+1,amount,dp);//check one note for recursion tree
 	}
 	
 }
