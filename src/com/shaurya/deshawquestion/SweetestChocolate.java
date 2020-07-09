@@ -26,8 +26,8 @@ public class SweetestChocolate {
         sc.close();
     }
 
-    static void solve(final int n,final int s[],final int b[],final String name[],final int q,final int query[]){
-        final ArrayList<Choco> list = new ArrayList<>();
+    static void solve(int n,int s[],int b[],String name[],int q,int query[]){
+        ArrayList<Choco> list = new ArrayList<>();
         for(int i=0;i<n;i++){
             list.add(new Choco(s[i], b[i], name[i]));
         }
