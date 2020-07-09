@@ -8,6 +8,7 @@ public class HelloWorld {
 		Scanner scan = new Scanner(System.in);
 		System.out.println(scan.nextInt()*2);
 		System.out.println(scan.next());
+		//new changes
 	}
 
 }
