@@ -41,8 +41,10 @@ public class CuttingRodProblem {
     }
     static int maxProfitDp(int L,int p[]){
         int dp[] = new int[L+1];
+        //generate all input the input to proble and goes to 1 to L
         for(int l=1;l<=L;l++){
             dp[l] = Integer.MIN_VALUE;
+            //this is for calculating the max profit of the subproblem
             for (int i = 0; i < l; i++) {
                 dp[l] = Math.max(dp[l], p[i]+dp[l-i-1]);
             }
