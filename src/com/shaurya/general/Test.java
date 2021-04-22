@@ -1,51 +1,60 @@
 package com.shaurya.general;
 import java.util.*;
-class Pair {
-	char chars;
-	int count;
-
-	Pair(char chars, int count) {
-		this.chars = chars;
-		this.count = count;
-	}
-}
-
 public class Test {
-	public static void main(String[] args) {
-		String s = "abcccdee";
-		int k=3;
-		System.out.println("input "+s);
-		System.out.println("output: "+removeDuplicates(s, k));
-	}
-	public static String removeDuplicates(String s, int k) {
-		if (k >= s.length())
-			return s;
-		if (k == 1)
-			return "";
-		char remove = ' ';
-		Stack<Pair> stack = new Stack<>();
-		for (char ch : s.toCharArray()) {
-			if (stack.isEmpty())
-				stack.push(new Pair(ch, 1));
-			else {
-				if (stack.peek().chars != ch && stack.peek().count >= k && remove == stack.peek().chars) {
-					while (!stack.isEmpty() && stack.peek().chars == remove) {
-						stack.pop();
-					}
-				}
-				if (!stack.isEmpty() && ch == stack.peek().chars) {
-					stack.push(new Pair(ch, stack.peek().count + 1));
-					if (stack.peek().count >= k) {
-						remove = stack.peek().chars;
-					}
-				} else
-					stack.push(new Pair(ch, 1));
-			}
+    public static void main(String args[] ) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        int a[]=null;
+        while(t-->0){
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            a = new int[n+1];
+            for(int i=0;i<m;i++){
+                int l = sc.nextInt();
+                int r = sc.nextInt();
+                for(int j=l;j<=r;j++){
+                    a[j]++;
+                }
+            }
+            ArrayList<Pair> list = new ArrayList<Pair>();
+            for(int i=1;i<a.length;i++){
+                list.add(new Pair(i,a[i]));
+            }
+            Collections.sort(list);
+            System.out.println(list);
+            for(int i=list.size()-3;i<list.size();i++) {
+            	System.out.print(list.get(i).idx+" ");
+            }
+            System.out.println();
+        }
+    }
+    static class Pair implements Comparable<Pair>{
+        int idx;
+        int value;
+        Pair(int i,int v){
+            this.idx = i;
+            this.value=v;
+        }
+		@Override
+		public int compareTo(Pair b) {
+			if(value>b.value){
+                return 1;
+            }else if(value<b.value){
+                return -1;
+            }else{
+                if(idx>b.idx){
+                    return 1;
+                }else if(idx<b.idx){
+                    return -1;
+                }else{
+                    return 0;
+                }
+            }
 		}
-		StringBuilder str = new StringBuilder();
-		while (!stack.isEmpty()) {
-			str.append(stack.pop().chars);
+		@Override
+		public String toString() {
+			return idx+"->"+value;
 		}
-		return str.reverse().toString();
-	}
+    }
+    
 }
