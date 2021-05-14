@@ -14,22 +14,18 @@ public class Frog2 {
 		System.out.println(mincost(a,K));
 	}
 
-	static int mincost(int a[],int K) {
+	static int mincost(int a[],int k) {
 		int dp[] = new int[a.length];
 		dp[1]=Math.abs(a[1]-a[0]);
 		int min=1000;
-		for(int i=0;i<a.length;i++) {
-			for(int k=0;k<K && i-k>=0;k++) {
-				if(i==(i-k)) {
-					continue;
+		for(int i=2;i<a.length;i++) {
+			min = Integer.MAX_VALUE;
+			for(int j=1;j<=k;j++) {
+				if(i-j>=0) {
+					min = Math.min(min, dp[i-j]+Math.abs(a[i]-a[i-j]));
 				}
-				System.out.printf("i=%d |a[%d]-a[%d]+%d=%d| min=%d \n",i,a[i],a[i-k],dp[i-k],(Math.abs(a[i]-a[i-k])+dp[i-k]),min);
-				min = Math.min(min, Math.abs(a[i]-a[i-k])+dp[i-k]);
 			}
-			min=1000;
-		}
-		for(int i:dp) {
-			System.out.print(i+" " );
+			dp[i]=min;
 		}
 		return dp[a.length-1];
 	}
