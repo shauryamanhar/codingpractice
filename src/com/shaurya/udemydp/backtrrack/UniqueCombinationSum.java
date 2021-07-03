@@ -7,8 +7,8 @@ import java.util.List;
 public class UniqueCombinationSum {
 
 	public static void main(String[] args) {
-		int a[] = {10,1,2,7,6,1,5};
-		int t=8;
+		int a[] = {0,1,2};
+		int t=a.length;
 		//sort to remove duplicate
 		Arrays.sort(a);
 		comSum(a, t, 0, new ArrayList<Integer>(), 0);

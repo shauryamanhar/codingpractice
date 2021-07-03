@@ -2,9 +2,9 @@ package com.shaurya.leetcode;
 
 public class LongestPalindromicSubstring {
 	public static void main(String[] args) {
-		String s = "geeks";
-//		longestPalindrome(s);
-		lp(s);
+		String s = "babad";
+		longestPalindrome(s);
+//		lp(s);
 	}
 	
 	static public void lp(String c) {

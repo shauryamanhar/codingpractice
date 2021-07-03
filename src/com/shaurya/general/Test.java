@@ -1,60 +1,40 @@
 package com.shaurya.general;
-import java.util.*;
 public class Test {
-    public static void main(String args[] ) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        int a[]=null;
-        while(t-->0){
-            int n = sc.nextInt();
-            int m = sc.nextInt();
-            a = new int[n+1];
-            for(int i=0;i<m;i++){
-                int l = sc.nextInt();
-                int r = sc.nextInt();
-                for(int j=l;j<=r;j++){
-                    a[j]++;
-                }
-            }
-            ArrayList<Pair> list = new ArrayList<Pair>();
-            for(int i=1;i<a.length;i++){
-                list.add(new Pair(i,a[i]));
-            }
-            Collections.sort(list);
-            System.out.println(list);
-            for(int i=list.size()-3;i<list.size();i++) {
-            	System.out.print(list.get(i).idx+" ");
-            }
-            System.out.println();
-        }
+    public static void main(String[] args) throws Exception {
+    	Customer c = new Customer("Seema");
+    	new Thread(()-> {c.withdraw(1000);}).start();;
+    	new Thread(()-> {c.deposit(2000);}).start();;
     }
-    static class Pair implements Comparable<Pair>{
-        int idx;
-        int value;
-        Pair(int i,int v){
-            this.idx = i;
-            this.value=v;
-        }
-		@Override
-		public int compareTo(Pair b) {
-			if(value>b.value){
-                return 1;
-            }else if(value<b.value){
-                return -1;
-            }else{
-                if(idx>b.idx){
-                    return 1;
-                }else if(idx<b.idx){
-                    return -1;
-                }else{
-                    return 0;
-                }
-            }
-		}
-		@Override
-		public String toString() {
-			return idx+"->"+value;
-		}
-    }
-    
 }
+
+class Customer{
+	int balance;
+	String name;
+	Customer(String name){
+		this.balance = 0;
+		this.name = name;
+	}
+	synchronized void deposit(int money) {
+		System.out.println(name+" depostite money Rs"+money);
+		balance+=money;
+		notify();
+		System.out.println(name+" notified other ");
+	}
+	
+	synchronized void withdraw(int money) {
+		System.out.println(name+" withdraw money Rs"+money);
+		if(balance-money<0) {
+			System.out.println("Running low balance\nPlease doposite money");
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				System.out.println("got intrupt");
+			}
+		}
+		balance-=money;
+		System.out.println("withdraw completed");
+	}
+}
+
+
+
