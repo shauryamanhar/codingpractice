@@ -1,6 +1,9 @@
 package com.shaurya.leetcode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 public class SubsetsII {
 
@@ -28,9 +31,9 @@ public class SubsetsII {
 			String s[] = str.split(";");
 			List<Integer> list = new ArrayList<>();
 			for(String r:s) {
-				if(r.isBlank()) {
-					continue;
-				}
+//				if(r.isBlank()) {
+//					continue;
+//				}
 				list.add(Integer.valueOf(r));
 			}
 			ans.add(list);
