@@ -4,7 +4,6 @@ public class DiceCombinations {
 
 	public static void main(String[] args) {
 		int target = 999997;
-		int noOfWays = -1;
 		System.out.println("no of ways:" + diceDp(target));
 	}
 
