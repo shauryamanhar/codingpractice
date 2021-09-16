@@ -61,6 +61,5 @@ public class MatrixRotation {
 			}
 			cs++;
 		}
-
-	}
+	}// print order
 }
