@@ -1,17 +1,15 @@
 package com.shaurya.general;
 
-import java.util.*;
-
 public class Test{
 	public static void main(String[] args) {
-		try {
-			bad();
-			System.out.println("a");
-		} catch (Exception e) {
-			System.out.println("b");
-		}finally {
-			System.out.println("c");
+//		int n = 46;
+		int n = 1068;
+		for (int div = 2; div <= n; div++) {
+			while (n % div == 0) {
+				System.out.println("div " + div + " n " + n);
+				n = n / div;
+			}
 		}
 	}
-	static void bad() {}
 }
+
