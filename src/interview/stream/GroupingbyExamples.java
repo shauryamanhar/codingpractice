@@ -7,8 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class GroupingbyExamples {
 	public static void main(String[] args) {
@@ -19,7 +17,7 @@ public class GroupingbyExamples {
 		System.out.println("set of length :" + setOfLength);
 		
 		System.out.println(
-				givenList.stream().collect(groupingBy(Function.identity(), )));
+				givenList.stream().collect(groupingBy(String::length)));
 
 	}
 
