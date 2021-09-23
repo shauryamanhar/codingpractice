@@ -1,0 +1,25 @@
+7
+a
+aaa
+aba
+abba
+xxyzyxx
+aba
+abccba
+
+#1 
+#2 aab
+#3 aaa
+#4 aaba
+#5 axyzyxx
+#6 aaa
+#7 aaccba
+
+#1 
+#2 aab
+#3 abb
+#4 aaba
+#5 axyzyxx
+#6 abb
+#7 aaccba
+
