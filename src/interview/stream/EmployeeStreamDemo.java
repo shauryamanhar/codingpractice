@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -46,7 +47,8 @@ public class EmployeeStreamDemo {
 
 		// Query 8 : Get the details of youngest male employee in the product
 		// development department?
-		query8();
+//		query8();
+		query16();
 
 	}
 
@@ -63,7 +65,6 @@ public class EmployeeStreamDemo {
 		// List<String> result =
 		// employeeList.stream().map(Employee::getDepartment).distinct().collect(toList());
 		employeeList.stream().map(Employee::getDepartment).distinct().forEach(System.out::println);
-		;
 	}
 
 	static void query3() {
@@ -93,6 +94,11 @@ public class EmployeeStreamDemo {
 		employeeList.stream().filter(e -> e.getYearOfJoining() > 2015).map(Employee::getName)
 				.forEach(System.out::println);
 		;
+	}
+
+	static void query16() {
+		System.out.println(employeeList.stream().filter(x -> x.getGender().equals("Male"))
+				.collect(Collectors.maxBy((a, b) -> (int) (a.getSalary() - b.getSalary()))));
 	}
 
 	// Query 6 : Count the number of employees in each department?
