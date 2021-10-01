@@ -1,9 +1,8 @@
-package com.shaurya.slidingwindow;
+package com.shaurya.general;
 
 import java.util.HashSet;
 
-public class LongestNiceSubstring {
-
+public class BalanceTree {
 	public String longestNiceSubstring(String s) {
 		if(s.length()<2) {
 			return "";
@@ -25,23 +24,4 @@ public class LongestNiceSubstring {
 		}
 		return s;
 	}
-	int solution(String s) {
-		String ans = longestNiceSubstring(s);
-		return ans.length()==0?-1:ans.length();
-	}
-	
-	
-	public static void main1(String[] args) {
-		String s = "AcZCbaBz";
-		LongestNiceSubstring op = new LongestNiceSubstring();
-		int ans = op.solution(s);
-		System.out.println(ans);
-	}
-	public static void main(String[] args) {
-		int m = 13;
-		int n = 3;
-		double ans = Math.floor(Math.sqrt(m/(4+n)));
-		System.out.println("ans "+ans);
-	}
-
 }
