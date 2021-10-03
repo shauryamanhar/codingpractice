@@ -1,64 +1,24 @@
 package com.shaurya.general;
-import java.util.*;
-public class VowelSubstring {
-	public static String findSubstring(String s, int k) {
-		int maxCount = 0;
-		int count = 0;
-		int start = 0;
-		int end = 0;
-		for (int i = 0; i < k; i++) {
-			if (vowel(s.charAt(i))) {
-				count++;
-			}
-		}
-		end = k;
-		maxCount = Math.max(maxCount, count);
-		int as = 0;
-		int ae = k;
-		while (end < s.length() && start < end) {
-			// remove
-			if (vowel(s.charAt(start))) {
-				count--;
-			}
-			start++;
-			// add
-			if (vowel(s.charAt(end))) {
-				count++;
-			}
-			end++;
-			// update value
-			if (count == maxCount) {
 
-			}
-			if (count > maxCount) {
-				maxCount = count;
-				as = start;
-				ae = end;
-			}
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-		}
-		if (maxCount == 0) {
-			return "Not found!";
-		}
-		return s.substring(as, ae);
-
-	}
-
-	private static boolean vowel(char ch) {
-		return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
-	}
+public class VowelSubstringAdobe {
 
 	public static void main(String[] args) {
-		String s = "aab";
-		int k = 2;
-		System.out.println(findSubstring(s, k));
-
+		String a = "aab";
+		System.out.println(findSubstrings(a));
+		SmallestAndLargestSubstring(a);
 	}
 
 	public static List<String> findSubstrings(String str) {
 		if (str == null || str.isEmpty())
 			return Collections.EMPTY_LIST;
-		
+
 		Map<Character, List<Integer>> map = new HashMap<>();
 		int n = str.length();
 		char[] chars = str.toCharArray();
@@ -135,6 +95,53 @@ public class VowelSubstring {
 		if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
 			return true;
 		return false;
+	}
+
+	static void SmallestAndLargestSubstring(String input) {
+
+		char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+		char[] cons = { 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x',
+				'y', 'z' };
+		char[] charArray = input.toLowerCase().toCharArray();
+		int longStartIndex = 0;
+		int shortStartIndex = 0;
+		int shortEndIndex = 0;
+		int longEndIndex = 0;
+		boolean findVowel = false;
+		int bestStart = 0;
+		int bestEnd = 0;
+		int shortest = Integer.MAX_VALUE;
+
+		for (int i = 0; i < charArray.length; i++) {
+			for (int z = 0; z < vowels.length; z++) {
+				if (charArray[i] == vowels[z]) {
+					if (!findVowel) {
+						// if this is the first vowel we see
+						longStartIndex = i;
+						shortStartIndex = i;
+						findVowel = true;
+					} else {
+						shortStartIndex = i;
+					}
+				}
+			}
+			for (int j = 0; j < cons.length; j++) {
+				if (charArray[i] == cons[j]) {
+					if (findVowel) {
+						// if we have seen any vowel, this consonant is useless
+						longEndIndex = i; // this one is always than the previous for the largest
+						shortEndIndex = i; // we have to check if this one is better or not
+						if (shortEndIndex - shortStartIndex < shortest) {
+							bestStart = shortStartIndex;
+							bestEnd = shortEndIndex;
+							shortest = shortEndIndex - shortStartIndex;
+						}
+					}
+				}
+			}
+		}
+		System.out.println(input.substring(bestStart, bestEnd + 1));
+		System.out.println(input.substring(longStartIndex, longEndIndex + 1));
 	}
 
 }
